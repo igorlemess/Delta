@@ -1,0 +1,75 @@
+{{>_navbar}}
+<main class="flex-fill mt-5 h-100 pt-5 w-100 ">
+    <div class="container d-flex flex-column h-100 align-items-center w-100">
+        <div class="row d-flex justify-content-sd-start justify-content-lg-center w-100">
+            <div class="col-sd-12 col-lg-8">
+                <div class="d-flex w-100 justify-content-between mb-3">
+                    <h1 class="">Meus pedidos</h1>
+                    <a role="button" class="btn align-self-center justify-self-end" href="/pedidos/vendas">Vendas</a>
+                </div>
+                {{#each pedidos}}
+                {{#if (isProcessando Status.status)}}
+
+                {{else}}
+                <div class="accordion" id="divPedidos">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed pedidos d-flex" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#pedido{{id}}">
+                                <b>Pedido </b>
+                                <span class="mx-1">Status:</span> <b class="text-primary">{{Status.status}}</b>
+                            </button>
+                        </h2>
+                        <div id="pedido{{id}}" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
+                            <div class="accordion-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th class="text-end">R$ Unit.</th>
+                                            <th class="text-center">Qtde.</th>
+                                            <th class="text-end">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each ../items}}
+                                        {{#if (pertencePedido PedidoId ../id)}}
+                                        <tr>
+                                            <td>{{Produto.nomeProd}}</td>
+                                            <td class="text-end">{{formatarReais preco}}</td>
+                                            <td class="text-center">{{quantidade}}</td>
+                                            <td class="text-end">{{formatarReais (math preco "*" quantidade)}}</td>
+                                        </tr>
+                                        {{/if }}
+                                        {{/each}}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-end" colspan="3">Valor dos Produtos:</th>
+                                            <td class="text-end">{{formatarReais valortotal}}</td>
+                                        </tr>
+                                        <th class="text-end" colspan="3">Data do pedido:</th>
+                                        <td class="text-end">{{formatDate DataHora "DD/MM/YYYY HH:mm:ss"}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <strong>Endereço de entrega:</strong><br>
+                                                {{Endereco.endereco}}, {{Endereco.numero}}, {{Endereco.bairro}},<br>
+                                                {{Endereco.cidade}}, {{Endereco.UF}}, CEP: {{Endereco.cep}}
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{else}}
+                <h4 class="text-center">Não há pedidos efetuados</h4>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    </div>
+</main>

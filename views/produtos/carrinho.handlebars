@@ -1,0 +1,123 @@
+{{>_navbar}}
+
+<main class="d-flex flex-column container-fluid vh-100">
+    <br>
+    <br>
+    <br>
+    <div class="row border-bottom border-black">
+        <p class="col-1">
+        <p class="col fs-4 text-center">Produto</p>
+        <p class="col fs-4 text-center">Quantidade</p>
+        <p class="col fs-4">Preço</p>
+        <div class="col-1"></div>
+    </div>
+        {{#each pedidos}}
+        <input type="hidden" value="{{id}}" name="pedidoId" id="pedidoId">
+        <input type="hidden" value="{{Status.id}}" name="StatusId" id="StatusId">
+            {{#each ../items}}
+                {{#if (pertencePedido PedidoId ../id)}}
+                    <div class="row border-bottom border-black d-flex align-items-center"> {{id}}
+                        <img class="col-1" src="{{#if Produto.imagem1}}{{Produto.imagem1}}{{else if Produto.imagem2}}{{Produto.imagem2}}{{else}}{{Produto.imagem3}}{{/if}}">
+                        <p class="col text-center fs-4 product-description">{{Produto.nomeProd}}</p>
+                        <p class="col text-center border-end border-black">{{quantidade}}</p>
+                        <div class="col">
+                            <p class="fs-4 unit-price" id="unit-price">{{formatarReais (math preco "*" quantidade)}}</p>
+                        </div>
+                            <p class="fs-4" id="unit-priced" style="display: none;">{{distanceFixed (math preco "*" quantidade)}}</p>
+
+                        
+                        <form method="POST" action="/carrinho/removerItem" class="col-1 d-flex flex-column justify-content-center">
+                            <input type="hidden" name="ItemId" value="{{id}}">
+                            <div class="d-flex flex-column justify-content-center">
+                                <button class="btn w-75" type="submit"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                {{/if}}
+            {{/each}}
+        {{/each}}
+        <div class="row d-flex justify-content-center align-items-center border-top border-black fixed-bottom total bg-light">
+            <div class="col text-center fs-4"></div>
+            <div class="col text-center fs-4" id="total-value"> Total: R$ {{formatarReais totalValue}}</div>
+            <input type="hidden" value="" name="valorTotal" id="valorTotal">
+            <div class="col"><button class="btn btn-lg" id="checkout-btn" type="submit">Finalizar Compra</button></div>
+            <div id="button-checkout"></div>
+        </div>
+    
+
+</main>
+
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+    var total = 0;
+    var unitPrices = document.querySelectorAll("#unit-priced");
+
+    for (let i = 0; i < unitPrices.length; i++) {
+        var priceString = unitPrices[i].textContent.trim().replace("R$ ", "")
+        var price = parseFloat(priceString);
+
+        total += price;
+
+    }
+
+    console.log(total);
+
+    var totalValue = document.getElementById("total-value");
+
+    document.getElementById("valorTotal").value = total;
+
+    totalValue.textContent = "Total: R$ " + total;
+
+    const mercadopago = new MercadoPago("TEST-fb5ecaa2-1254-4536-bd30-9eba7f9180ac", {
+        locale: "pt-BR", // Os mais comuns são: 'pt-BR', 'es-AR' e 'en-US'
+    });
+
+    document.getElementById("checkout-btn").addEventListener("click", function () {
+
+        const productDescriptions = document.getElementsByClassName("product-description");
+
+        var description_all = "";
+
+        for (let i = 0; i < productDescriptions.length; i++) {
+            const description = productDescriptions[i].innerHTML;
+
+            if (i !== 0) {
+                description_all += ", ";
+            }
+
+            description_all += description;
+        }
+
+        console.log(description_all);
+
+        const orderData = {
+            quantity: 1,
+            description: description_all,
+            price: document.getElementById("total-value").textContent.trim().replace("Total: R$ ", ""),
+            pedidoId: document.getElementById('pedidoId').value,
+            StatusId: document.getElementById('StatusId').value,
+        };
+
+        fetch("/carrinho/create_preference", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (preference) {
+                redirectToMercadoPago(preference.id);
+            })
+            .catch(function () {
+                alert("Erro inesperado");
+            });
+    });
+
+    function redirectToMercadoPago(preferenceId) {
+        window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${preferenceId}`;
+    }
+</script>

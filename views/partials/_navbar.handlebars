@@ -1,0 +1,146 @@
+<header class="fixed-top">
+    <nav class="navbar navbar-dark tela fixed-top d-flex">
+        <div class="container-fluid d-flex">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title d-flex justify-content-center align-items-center"
+                        id="offcanvasDarkNavbarLabel"><a class="d-flex justify-content-center" href="/"><img
+                                class="img-fluid w-50" src="/img/logo2.png"></a></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <form class="d-flex mt-3 mb-5 d-md-none" role="search" method="POST" action="">
+                        <input class="form-control form-control-lg flex-grow-1 me-2" type="search"
+                            placeholder="Pesquisar" aria-label="Pesquisar" name="pesquisar">
+                        <button class="btn btn-lg" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 fs-4 mb-3">
+                        <li class="nav-item mb-5">
+                            <a class="nav-link active ps-5" aria-current="page" href="/"><i
+                                    class="bi bi-house-fill me-2"></i>Início</a>
+                        </li>
+
+                        <li class="nav-item dropdown ps-5 mb-5">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-grid-fill me-2"></i>Categorias
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-light">
+                                <li><a class="dropdown-item" href="/categorias?categoria=acessorios">Acessórios</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=artesanato">Artesanato</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=vestuario">Vestuário</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=aniversario">Aniversário e
+                                        Festas</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=bebe">Bebê</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=bijuterias">Bijuterias</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=bolsas">Bolsas e Carteiras</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=casa">Casa</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=casamento">Casamento</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=convites">Convites</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=decoracao">Decoração</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=diadasmaes">Dia das Mães</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=diadosnamorados">Dia dos
+                                        Namorados</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=diadospais">Dia dos Pais</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/categoria?categoria=seco">Eco</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=infantil">Infantil</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=jogosebrinquedos">Jogos e
+                                        Brinquedos</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=joias">Jóias</a></li>
+                                <li><a class="dropdown-item"
+                                        href="/categorias?categoria=lembrancinhas">Lembrancinhas</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=moveis">Móveis</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=natal">Natal</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=papelecia">Papel e Cia</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=pascoa">Páscoa</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=pets">Pets</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=religiosos">Religiosos</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=roupas">Roupas</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=saude">Saúde e Beleza</a></li>
+                                <li><a class="dropdown-item" href="/categorias?categoria=tecnicas">Técnicas de
+                                        Artesanato</a></li>
+                            </ul>
+                        </li>
+
+                        <div class="">
+
+                            <li class="nav-item mb-5">
+                                <a class="nav-link ps-5" aria-current="page" href="/carrinho/carrinho"><i
+                                        class="bi bi-cart-fill me-2"></i>Carrinho</a>
+                            </li>
+
+                        </div>
+                    </ul>
+
+
+
+                    <figure class="text-center pt-5 mt-5">
+                        <a href="/pdf/DeltaTg.pdf" target="_blank"><img src="/img/Formulário.png" class="img-fluid"></a>
+                    </figure>
+                </div>
+            </div>
+
+
+
+            <form action="/pesquisar" class="searchform col-5 d-none d-md-block" method="GET">
+                <div class="form-group d-flex">
+                    <input type="text" class="form-control col-6 pl-3" placeholder="Pesquisar" name="pesquisar">
+                    <button type="submit" placeholder="" class="btn fundoroxo"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+
+            {{#if user}} <!-- Se o usuário está logado, não mostra as opções de cadastro e login -->
+            <div class="dropdown col-2 pusuario d-flex">
+                <div class="g-0 d-flex justify-content-end align-items-center dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="me-2">{{ user.Nome }}</span> <!-- Exibe o nome do usuário com margem à direita -->
+                    {{#if user.imgPerfil}}
+                    <img class="img-fluid round col-10 perfil-img" src="Images/{{user.imgPerfil }}">
+                    {{else}}
+                    <img class="img-fluid round col-10 perfil-img" src="/img/perfilsimg.png">
+                    {{/if}}
+                    <!-- Exibe a imagem do usuário ou a imagem padrão -->
+                </div>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/usuario">Perfil</a></li>
+                    <li><a class="dropdown-item" href="/pedidos/meuspedidos">Pedidos</a></li>
+                    <li><a class="dropdown-item" href="/produtos">Produtos</a></li>
+                    <li><a class="dropdown-item" href="/propostas">Propostas</a></li>
+                    <li><a class="dropdown-item" href="/usuario/alterarperfil">Editar Perfil</a></li>
+                    <li><a class="dropdown-item" href="/usuario/alterarendereco">Editar Endereço</a></li>
+                    <li><a class="dropdown-item" href="/usuario/alterarsenha">Alterar senha</a></li>
+                    <li><a class="dropdown-item" href="/usuario/logout">Sair</a></li>
+                </ul>
+            </div>
+
+        </div>
+        {{else}} <!-- Se o usuário não está logado, mostra as opções de cadastro e login -->
+        <div class="d-flex justify-content-center align-items-center col-auto">
+            <a class="btn me-2" href="/usuario/cadastro">Cadastrar-se</a>
+            <a class="btn ms-2" href="/usuario/login">Login</a>
+        </div>
+        {{/if}}
+
+    </nav>
+</header>
+
+<style>
+    .perfil-img {
+        width: 40px;
+        /* Ajuste o tamanho da imagem conforme necessário */
+        height: 40px;
+        border-radius: 50%;
+        /* Torna a imagem redonda */
+    }
+</style>

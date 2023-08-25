@@ -1,0 +1,47 @@
+{{>_navbar}}
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center vh-100">
+               
+                <div class="container mt-5 h-100">
+                    <div class="rounded bg-light container-sd shadow-sm mt-5 w-100">
+
+                        <b><p class="fs-4 text-center tcinza">Proposta de personalização</p></b>
+
+                        <form action="/propostas/cadProposta" method="POST" class="container-md" enctype="multipart/form-data">         
+                            <div class="container-fluid pb-3">
+                                <div class="fs-5">  
+                                    <div class="mb-5">
+                                        <p class="fs-2">Produto: {{produto.nomeProd}}</p>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">Especificações</label>
+                                        <textarea class="especificacoes form-control form-control-lg" type="text" name="espProposta"></textarea>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label"> Adicionar fotos </label>
+                                        <input class="form-control form-control-lg" type="file" accept="image/png,image/jpeg" name="imagem1" />
+                                        <input class="form-control form-control-lg" type="file" accept="image/png,image/jpeg" name="imagem2" />
+                                        <input class="form-control form-control-lg" type="file" accept="image/png,image/jpeg" name="imagem3" />
+                                    </div>
+                                </div> 
+                                    <input type="hidden" name="vendedor" value="{{vendedor}}">
+                                    <input type="hidden" name="produto" value="{{produto.id}}">
+                                    <input type="hidden" name="qtde" value="{{qtde}}">
+                                <div class="d-flex justify-content-end">
+
+                                    <div class="mt-2 me-2 text-center t2cinza">
+                                        <a href="/{{produto.id}}" type="reset" value="Reset" class="btn btn-lg">Cancelar</a>
+                                    </div>
+                                    
+                                    <div class="ms-2 mt-2 text-center">
+                                        <button type="submit" class="btn btn-lg">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+               
+ </div>

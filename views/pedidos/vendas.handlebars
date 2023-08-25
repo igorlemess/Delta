@@ -1,0 +1,96 @@
+{{>_navbar}}
+
+<main class="flex-fill mt-5 h-100 pt-5 w-100 ">
+    <div class="container d-flex flex-column h-100 align-items-center w-100">
+        <div class="row d-flex justify-content-sd-start justify-content-lg-center w-100">
+            <div class="col-sd-12 col-lg-8">
+                <div class="d-flex w-100 justify-content-between mb-3">
+                    <h1 class="">Minhas vendas</h1>
+                    <a role="button" class="btn align-self-center justify-self-end" href="/pedidos/meuspedidos">Meus
+                        pedidos</a>
+                </div>
+                <div class="accordion" id="divVendas">
+                    {{#each pedidos}}
+                    {{#if (isProcessando Status.status)}}
+
+                    {{else}}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed pedidos d-flex" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#venda{{id}}">
+                                <b>Venda {{id}}</b>
+                            </button>
+                        </h2>
+                        <div id="venda{{id}}" class="accordion-collapse collapse" data-bs-parent="#divVendas">
+                            <div class="accordion-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="">
+                                            <form method="POST" action="/pedidos/alterarStatus">
+                                                <th>Altere o status do pedido:</th>
+                                                <th>
+                                                    <input type="hidden" value="{{Status.id}}" name="StatusId">
+                                                    <select class="form-select" placeholder="" name="status">
+                                                        {{#if (isEnviado Status.status)}}
+                                                        <option value="Em Produção">Em produção</option>
+                                                        <option value="Enviado" selected>Enviado</option>
+                                                        {{else}}
+                                                        <option value="Em Produção" selected>Em produção</option>
+                                                        <option value="Enviado">Enviado</option>
+                                                        {{/if}}
+                                                    </select>
+                                                </th>
+                                                <th>
+                                                    <button class="btn" type="submit">Salvar</button>
+                                                </th>
+                                            </form>
+                                        </tr>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th class="text-end">R$ Unit.</th>
+                                            <th class="text-center">Qtde.</th>
+                                            <th class="text-end">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each ../items}}
+                                        {{#if (pertencePedido PedidoId ../id)}}
+                                        <tr>
+                                            <td>{{Produto.nomeProd}}</td>
+                                            <td class="text-end">{{formatarReais preco}}</td>
+                                            <td class="text-center">{{quantidade}}</td>
+                                            <td class="text-end">{{formatarReais (math preco "*" quantidade)}}</td>
+                                        </tr>
+                                        {{/if }}
+                                        {{/each}}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-end" colspan="3">Total:</th>
+                                            <td class="text-end">{{formatarReais valortotal}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-end" colspan="3">Data da venda:</th>
+                                            <td class="text-end">{{formatDate DataHora "DD/MM/YYYY HH:mm:ss"}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <strong>Endereço de entrega:</strong><br>
+                                                {{Endereco.endereco}}, {{Endereco.numero}}, {{Endereco.bairro}},<br>
+                                                {{Endereco.cidade}}, {{Endereco.UF}}, CEP: {{Endereco.cep}}
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{else}}
+                                <h4 class="text-center">Não há vendas efetuadas</h4>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

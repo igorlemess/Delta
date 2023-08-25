@@ -1,0 +1,63 @@
+{{>_navbar}}
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center vh-100">
+
+    <div class="container mt-5 h-100">
+        <div class="rounded bg-light container-sd shadow-sm mt-5 w-100 border border-tertiary">
+
+
+            <b>
+                <p class="fs-4 text-center tcinza">Proposta de personalização</p>
+            </b>
+
+            <form method="POST" action="/propostas/aceitarCliente" enctype="multipart/form-data">
+                <div class="container-fluid pb-3">
+                    <div class="fs-5">
+                        <div class="mb-3">
+                            <label class="form-label"> Especificações: </label>
+                            <p class="especificacoes form-control form-control-lg" name="veresp">
+                                {{personalizacao.especificacoes}}
+                            </p>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="form-label">Imagens</p>
+                            <input type="hidden" value="{{personalizacao.id}}" name="personalizacao">
+                            <div class="d-flex row justify-content-center justify-content-evenly">
+                                {{#if personalizacao.imgProposta1}}
+                                <div class="text-center col-sm-12 col-md-4 col-lg-3 imgP">
+                                    <img class="img-fluid" src="{{personalizacao.imgProposta1}}">
+                                </div>
+                                {{/if}}
+
+                                {{#if personalizacao.imgProposta2}}
+                                <div class="text-center col-sm-12 col-md-4 col-lg-3 imgP">
+                                    <img class="img-fluid" src="{{personalizacao.imgProposta2}}">
+                                </div>
+                                {{/if}}
+
+                                {{#if personalizacao.imgProposta3}}
+                                <div class="text-center col-sm-12 col-md-4 col-lg-3 imgP">
+                                    <img class="img-fluid" src="{{personalizacao.imgProposta3}}">
+                                </div>
+                                {{/if}}
+                            </div>
+                        </div>
+
+                        <div class="mb-3 fs-4">
+                            <p class="form-label">Preço: {{formatarReais personalizacao.preco}}</p>
+                        </div>
+
+
+                        <div class="ms-2 me-2 mt-2 d-flex justify-content-end">
+                            <a role="button" class="btn btn-lg me-3" href="propostas/?p={{id}}">Recusar</a>
+                            <button type="submit" role="button" class="btn btn-lg"> Aceitar </button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

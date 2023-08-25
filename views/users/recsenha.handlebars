@@ -1,0 +1,40 @@
+<main class="conteudo tela">
+    {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+    {{>_msg}}
+    <div class="d-flex w-100 justify-content-center row g-0">
+        <div class="col-2"></div>
+        <div class="d-flex justify-content-center col-8">
+            <a href="inicial.html"> <img class="img-fluid logo text-center" src="/img/logo.png"></a>
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <a class=" pe-2" href="/usuario/login"><i class="bi bi-arrow-return-left fs-2"></i></a>
+        </div>
+    </div>
+
+    <form action="" method="POST" class="container-md mb-5">
+        <div class="row cadastro d-flex text-center">
+            <div class="w-100">
+                <h2 class="text-center mb-5">Recuperar Senha</h2>
+            </div>
+            <div class="d-flex col-12 flex-column align-items-center">
+                <div class="direita col-sm-12 col-md-12 col-lg-6 fs-5">
+                    <div class="mb-3">
+                        <label class="form-label">E-mail</label>
+                        <input class="form-control form-control-lg" type="email" name="semail">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 text-center">
+            <button type="submit" class="btn btn-lg btn-f">Recuperar</button>
+        </div>
+    </form>
+</main>
+
+<style>
+    body {
+        background-color: #DDC8FF;
+    }
+</style>

@@ -1,0 +1,112 @@
+<main class="conteudo tela">
+{{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+    {{>_msg}}
+
+  <div class="d-flex w-100 justify-content-center row g-0">
+    <div class="col-2"></div>
+    <div class="d-flex justify-content-center col-8">
+      <a href="/"> <img class="img-fluid logo text-center" src="/img/logo.png"></a>
+    </div>
+    <div class="col-2 d-flex justify-content-end">
+      <a class=" pe-2" href="/"><i class="bi bi-arrow-return-left fs-2"></i></a>
+    </div>
+  </div>
+
+
+
+
+  <form action="" method="POST" class="container-md">
+    <div class="row cadastro text-center">
+      <h2 class="text-center">Informações de endereço</h2>
+      <div class="esquerda col fs-5">
+        <div class="mb-3">
+          <label class="form-label">CEP</label>
+          <input class="form-control form-control-lg" type="text" name="cep" id="cepInput"
+            value="{{enderecoExistente.cep}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Rua</label>
+          <input class="form-control form-control-lg" type="text" name="endereco" id="enderecoInput"
+            value="{{enderecoExistente.endereco}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Número</label>
+          <input class="form-control form-control-lg" type="text" name="numero" value="{{enderecoExistente.numero}}">
+        </div>
+      </div>
+      <div class="direita col fs-5">
+        <div class="mb-3">
+          <label class="form-label">Cidade</label>
+          <input class="form-control form-control-lg" type="text" name="cidade" id="cidadeInput"
+            value="{{enderecoExistente.cidade}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">UF</label>
+          <input class="form-control form-control-lg" type="text" name="UF" id="ufInput"
+            value="{{enderecoExistente.UF}}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Bairro</label>
+          <input class="form-control form-control-lg" type="text" name="bairro" id="bairroInput"
+            value="{{enderecoExistente.bairro}}">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-12 justify-content-center">
+      <div class="fs-5 text-center flex-column col-6">
+        <div class="mb-3">
+          <label class="form-label">Complemento</label>
+          <input class="form-control form-control-lg" type="text" name="complemento"
+            value="{{enderecoExistente.complemento}}">
+        </div>
+
+      </div>
+    </div>
+    <div class="mt-5 text-center">
+      <button type="submit" class="btn btn-lg btn-f">Alterar</button>
+    </div>
+  </form>
+
+
+
+
+</main>
+<style>
+    body {
+        background-color: #DDC8FF;
+    }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cepInput = document.getElementById("cepInput");
+    const enderecoInput = document.getElementById("enderecoInput");
+    const cidadeInput = document.getElementById("cidadeInput");
+    const ufInput = document.getElementById("ufInput");
+    const bairroInput = document.getElementById("bairroInput");
+
+    cepInput.addEventListener("keyup", function () {
+      const cep = cepInput.value.replace(/\D/g, "");
+
+      if (cep.length === 8) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `https://viacep.com.br/ws/${cep}/json/`);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const enderecoData = JSON.parse(xhr.responseText);
+
+            if (!enderecoData.erro) {
+              enderecoInput.value = enderecoData.logradouro;
+              cidadeInput.value = enderecoData.localidade;
+              ufInput.value = enderecoData.uf;
+              bairroInput.value = enderecoData.bairro;
+            }
+          }
+        };
+        xhr.send();
+      }
+    });
+  });
+</script>

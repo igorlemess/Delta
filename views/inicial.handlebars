@@ -1,0 +1,99 @@
+{{>_navbar}}
+
+
+<main class="inicial container-fluid p-2  pt-4 fundo">
+    <div id="bannerinicial" class="carousel slide mt-3 bannerinicial" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="img/banner.png" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="img/banner2.png" alt="Second slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+            </a>
+            <a class="carousel-control-next" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+            </a>
+    </div>
+        <div class="container-fluid d-flex flex-column align-items-center mt-5">
+
+                <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+
+                    <b class=""><p class="fs-4 troxo">Anúncios recentes</p></b>
+
+                    {{#grouped_each 3 produtos}}
+                        <div class="row d-flex justify-content-center rounded bg-light container- p-3 shadow-sm mb-5">
+                        {{#each this }}
+                            <a href="{{id}}" class="post col-12 col-sm-12 col-md-3 col-lg-3 col-xl-auto d-flex flex-column p-0 m-4">
+                                <div class="thumb">
+                                    <img src="{{imagem1}}" class="img-fluid">
+                                </div>
+                                <div class="descricao p-1">
+                                    <p class="text-truncate">{{nomeProd}}</p>
+                                    <b><p>{{formatarReais preco}}</p></b>
+                                    <p>3x {{formatarReais (math preco "/" 3)}} sem juros</p>
+                                </div>
+                            </a>
+                        {{/each}}
+                        </div>
+                    {{/grouped_each}}
+            </div>
+</main>
+
+    <footer class="border-top text-muted bg-light">
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-12 col-md-4 text-center">
+                    &copy; 2023 - Delta<br>
+                    Rua Virtual Inexistente, 171, Compulândia/PC <br>
+                    CPNJ 99.999.999/0001-99
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <a href="/pdf/Delta política de privacidade.pdf" class="text-decoration-none text-dark">
+                        Política de Privacidade
+                    </a><br>
+                    <a href="/pdf/Delta Termos de uso.pdf" class="text-decoration-none text-dark">
+                        Termos de Uso
+                    </a><br>
+                    <a href="/quemsomos.html" class="text-decoration-none text-dark">
+                        Quem Somos
+                    </a><br>
+                    <a href="/trocas.html" class="text-decoration-none text-dark">
+                        Trocas e Devoluções
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <a href="/contato.html" class="text-decoration-none text-dark">
+                        Contato pelo Site
+                    </a><br>
+                    E-mail: <a href="mailto:ikarosdeltatg@gmail.com" class="text-decoration-none text-dark">
+                        ikarosdeltatg@gmail.com
+                    </a><br>
+                    Telefone: <a href="phone:28999990000" class="text-decoration-none text-dark">
+                        (28) 99999-0000
+                    </a>
+                </div>
+            </div>
+        </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Função para avançar o carrossel
+    function avancarCarrossel() {
+        $('.carousel').carousel('next');
+    }
+
+    // Configura o carrossel para mudar de imagem a cada 4 segundos
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: 4000
+        });
+        setInterval(avancarCarrossel, 4000);
+    });
+</script>

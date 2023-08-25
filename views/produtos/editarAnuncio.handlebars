@@ -1,0 +1,68 @@
+{{>_navbar}}
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center">
+
+    <div class="container mt-5 h-100">
+        <div class="rounded bg-light container-sd shadow-sm mt-5 w-100 p-3">
+
+
+            <b>
+                <p class="fs-4 text-center tcinza">Editar Anúncio</p>
+            </b>
+            <form action="/produtos/editar" method="POST" class="container-md">
+                <input type="hidden" value="{{produto.id}}" name="id">
+                <div class="row cadastro">
+                    <div class="esquerda col fs-5">
+                        <div class="mb-3">
+                            <label class="form-label"> Nome do anúncio </label>
+                            <input class="form-control form-control-lg" type="text" name="titulo"
+                                value="{{produto.nomeProd}}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> Quantidade em estoque </label>
+                            <input class="form-control form-control-lg" type="number" min="0" name="qtde"
+                                value="{{produto.qtde}}">
+                        </div>
+                    </div>
+
+                    <div class="direita col fs-5">
+
+                        <div class="mb-3">
+                            <label class="form-label"> Preço </label>
+                            <input class="form-control form-control-lg" placeholder="R$0,00" type="number" min="10,50"
+                                name="preco" value="{{produto.preco}}" step=".01">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> Categoria </label>
+                            <select class="form-select form-select-lg" id="inputGroupSelect01">
+                                <option value="{{produto.categoria}}">{{categoria.categoria}}</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> Descrição </label>
+                            <textarea class="form-control form-control-lg especificacoes" type="text"
+                                name="descricao">{{produto.descricao}}</textarea>
+                        </div>
+
+
+                        <div class="d-flex justify-content-end">
+
+                            <div class="mt-2 me-2 text-center t2cinza">
+                                <button type="reset" value="Reset" class="btn btn-lg "><a href="/produtos"
+                                        class="text-white">Cancelar</a></button>
+                            </div>
+
+                            <div class="ms-2 mt-2 text-center">
+                                <button type="submit" class="btn btn-lg">Enviar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

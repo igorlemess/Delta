@@ -1,0 +1,183 @@
+{{#each errors}}
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Erro!</strong> {{text}}
+</div>
+{{/each}}
+<main class="conteudo tela">
+    {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+    {{>_msg}}
+    <div class="d-flex w-100 justify-content-center row g-0">
+        <div class="col-2"></div>
+        <div class="d-flex justify-content-center col-8">
+            <a href="/"> <img class="img-fluid logo text-center" src="/img/logo.png"></a>
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <a class=" pe-2" href="/"><i class="bi bi-arrow-return-left fs-2"></i></a>
+        </div>
+    </div>
+
+    <form action="" method="post" class="container-md" enctype="multipart/form-data">
+
+        <div class="row cadastro d-flex text-center">
+
+
+            <div class="w-100">
+                <h2 class="text-center">Crie sua conta</h2>
+                <div class="form-check form-switch justify-content-center align-items-center float-end">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                        value="juridica" onchange='AtributosJ(this);'>
+                    <label class="form-check-label" for="flexSwitchCheckDefault"> Pessoa jurídica</label>
+                </div>
+            </div>
+
+            <div class="esquerda col fs-5 ">
+                <div class="mb-3">
+                    <label class="form-label"> Nome Completo </label>
+                    <input class="form-control form-control-lg" type="text" name="nome" value="{{nome}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"> Telefone </label>
+                    <input class="form-control form-control-lg" type="text" name="telefone" placeholder="(99)99999-9999"
+                        value="{{telefone}}" required>
+                </div>
+
+                <div class="" id="atributosfisica">
+                    <div class="mb-3">
+                        <label class="form-label"> CPF </label>
+                        <input class="form-control form-control-lg" type="text" name="cpf" value="{{cpf}}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> RG </label>
+                        <input class="form-control form-control-lg" type="text" name="rg" value="{{rg}}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> Data de Nascimento </label>
+                        <input class="form-control form-control-lg" type="date" name="datanasc" value="{{datanasc}}"
+                            required>
+                    </div>
+                </div>
+
+                <div class="d-none" id="atributosjuridica">
+                    <div class="mb-3">
+                        <label class="form-label"> Inscrição Estadual </label>
+                        <input class="form-control form-control-lg" type="text" name="inscricaoe"
+                            value="{{inscricaoe}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> CNPJ </label>
+                        <input class="form-control form-control-lg" type="text" name="cnpj" value="{{cnpj}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> Razão Social </label>
+                        <input class="form-control form-control-lg" type="text" name="razaosocial"
+                            value="{{razaosocial}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="direita col fs-5">
+                <div class="mb-3">
+                    <label class="form-label"> E-mail </label>
+                    <input class="form-control form-control-lg" type="email" name="email" value="{{email}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"> Confirmar Email </label>
+                    <input class="form-control form-control-lg" type="email" name="cemail" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"> Senha </label>
+                    <input class="form-control form-control-lg" type="password" name="senha" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"> Confirmar Senha </label>
+                    <input class="form-control form-control-lg" type="password" name="csenha" required>
+                </div>
+
+                <div class="mb-5">
+                    <label class="form-label"> Imagem de perfil </label>
+                    <input class="form-control form-control-lg" type="file" name="imgperfil"
+                        accept="image/png,image/jpeg" id="imgperfil">
+                </div>
+            </div>
+
+
+            <div class="row d-flex cadastro text-center">
+                <div class="col">
+                    <h2 class="text-center mb-5">Informações bancárias</h2>
+                    <div class="mb-3">
+                        <label class="form-label"> Instituição </label>
+                        <input class="form-control form-control-lg" type="text" name="instituicao"
+                            value="{{instituicao}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> Agência </label>
+                        <input class="form-control form-control-lg" type="text" name="agencia" value="{{agencia}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> Conta </label>
+                        <input class="form-control form-control-lg" type="text" name="conta" value="{{conta}}">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <h2 class="text-center mb-5">Redes Sociais</h2>
+                    <div class="mb-3">
+                        <label class="form-label"> Instagram </label>
+                        <input class="form-control form-control-lg" type="text" name="instagram" value="{{instagram}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> Facebook </label>
+                        <input class="form-control form-control-lg" type="text" name="facebook" value="{{facebook}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> Site </label>
+                        <input class="form-control form-control-lg" type="text" name="site" value="{{site}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 text-center">
+                <button type="submit" class="btn btn-lg btn-f">Cadastrar</button>
+                <p class="fs-5">ou</p>
+            </div>
+    </form>
+
+    <div class="container col text-center">
+        <a class="btn btn-lg mb-5 btn-f" href="/usuario/login">Login</a>
+
+        <div class="googlelog container-sd">
+
+            <p>Ao clicar no botão, você declara que leu e aceitou os <a href="/pdf/Delta Termos de uso.pdf"
+                    target="_blank">termos de uso</a> e a <a href="/pdf/Delta política de privacidade.pdf"
+                    target="_blank">política de privacidade</a> do site.</p>
+
+
+            <input type="checkbox" value="" id="flexCheckDefault">
+            <label for="flexCheckDefault">
+                Quero receber notificações do Delta
+            </label>
+
+            <p class="">------------ ou ------------</p>
+            <p>entrar com:</p>
+            <button class="google" onclick="window.location.href='/usuario/auth/google'"><img
+                    src="https://img.freepik.com/icones-gratis/google_318-278809.jpg" class="img-fluid"></button>
+        </div>
+    </div>
+
+</main>
+<script src="/js/script.js"></script>

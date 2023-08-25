@@ -1,0 +1,59 @@
+{{>_navbar}}
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center vh-100">
+
+    <div class="container mt-5 h-100">
+        <div class="rounded bg-light container-sd shadow-sm mt-5 w-100">
+
+
+            <b>
+                <p class="fs-4 text-center tcinza">Proposta de personalização</p>
+            </b>
+            <div class="container-fluid pb-3">
+                <div class="fs-5">
+                    <h4>Anúncio: {{personalizacao.Produto.nomeProd}}</h4>
+                    <div class="mb-3 mt-3">
+                        <label class="form-label"> Especificações: </label>
+                        <p class="especificacoes form-control form-control-lg" name="veresp">
+                            {{personalizacao.especificacoes}}
+                        </p>
+                    </div>
+                    <p class="form-label">Imagens</p>
+                    <div class="mb-3 d-flex justify-content-center row">
+                        {{#if personalizacao.imgProposta1}}
+                        <div class="text-center col-sm-12 col-md-4 col-lg-3 imgP">
+                            <img class="img-fluid" src="{{personalizacao.imgProposta1}}">
+                        </div>
+                        {{/if}}
+
+                        {{#if personalizacao.imgProposta2}}
+                        <div class="text-center col-sm-12 col-md-4 col-lg-3 imgP">
+                            <img class="img-fluid" src="{{personalizacao.imgProposta2}}">
+                        </div>
+                        {{/if}}
+
+                        {{#if personalizacao.imgProposta3}}
+                        <div class="text-center col-sm-12 col-md-4 col-lg-3 imgP">
+                            <img class="img-fluid" src="{{personalizacao.imgProposta3}}">
+                        </div>
+                        {{/if}}
+
+                        {{#if (isAceitoCliente personalizacao.status)}}
+                        <div class="mb-3 fs-4">
+                            <p class="form-label">Preço: {{personalizacao.preco}}</p>
+                        </div>
+                        {{else}}
+                        {{/if}}
+
+
+                        <div class="ms-2 me-2 mt-2 d-flex justify-content-end">
+                            <a role="button" class="btn btn-lg" href="/propostas/recebidas">Voltar</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>

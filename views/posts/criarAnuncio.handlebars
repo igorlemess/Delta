@@ -1,0 +1,78 @@
+{{>_navbar}}
+<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center fundo">
+               
+        <div class="container mt-5 h-100">
+            <div class="rounded bg-light container-sd shadow-sm mt-5 w-100 p-3">
+
+            
+                <b><p class="fs-4 text-center tcinza">Criação de Anúncio</p></b>
+                
+                        <form action="/anuncios/novoAnuncio" method="POST" class="container-md" enctype="multipart/form-data">
+                                <div class="row cadastro">
+
+                                    <div class="esquerda col fs-5">   
+                                        <div class="mb-3">
+                                            <label class="form-label"> Nome do anúncio   </label>
+                                            <input class="form-control form-control-lg" type="text" name="titulo" id="titulo">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label"> Adicionar fotos </label>
+                                            <br>
+                                            <input class="form-control form-control-lg" type="file" accept="image/png,image/jpeg" name="imagem1" id="imagem1" />
+                                            <input class="form-control form-control-lg" type="file" accept="image/png,image/jpeg" name="imagem2" id="imagem2" />
+                                            <input class="form-control form-control-lg" type="file" accept="image/png,image/jpeg" name="imagem3" id="imagem3" />
+                                        </div>
+
+                                        {{!-- <div class="mb-3">
+                                            <label class="form-label"> Quantidade em estoque </label>
+                                            <input class="form-control form-control-lg" type="number" min="0" name="qtdeEstoque" id="qtdeEstoque">
+                                        </div>                 --}}
+                                    </div> 
+                    
+                                    <div class="direita col fs-5">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Preço </label>
+                                            <input class="form-control form-control-lg" placeholder="R$0,00" type="number" min="10,50" name="preco" id="preco">
+                                        </div>
+                    
+                                        <div class="mb-3">
+                                            <label class="form-label"> Categoria </label>                                            
+                                            <select class="form-select" id="inputGroupSelect01" name="categoria">
+                                                <option selected></option>
+                                                <option value="Utensilios">Utensilios</option>
+                                                <option value="Roupas">Roupas</option>
+                                                <option value="Decoracoes">Decorações</option>
+                                            </select>
+                                        </div>
+                                    
+                                        <div class="mb-3">
+                                            <label class="form-label"> Descrição </label>
+                                            <input class="form-control form-control-lg" type="text" name="descricao" id="descricao">
+                                        </div>
+                    
+                                        {{!-- <div class="mb-3">
+                                            <label class="form-label"> Adicionar variações </label>
+                                            <input class="form-control form-control-lg" type="text" name="VarAnunc" id="VarAnunc">
+                                        </div> --}}
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <div class="mt-2 me-2 text-center t2cinza">
+                                            <button type="reset" value="Reset" class="btn btn-lg ">Cancelar</button>
+                                        </div>
+                                        
+                                        <div class="ms-2 mt-2 text-center">
+                                            <button type="submit" class="btn btn-lg">Enviar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                        </form>
+            </div>
+        </div>
+</div>
+
+
+    
+    

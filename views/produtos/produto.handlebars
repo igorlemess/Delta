@@ -1,0 +1,170 @@
+{{>_navbar}}
+
+<main class="container-sd d-flex flex-column justify-content-center align-items-center postagem fundo">
+    <div class="d-flex container-fluid row">
+
+        <div class="col-sd-12 col-md-12 col-lg-6 col-xl-6 g-0">
+
+
+            <div id="carouselExample" class="carousel slide bg-white">
+                <div class="carousel-inner border-roxo">
+                    {{#if produto.imagem1}}
+                    <div class="carousel-item active">
+                        <img src="{{produto.imagem1}}" class="d-block w-100" alt="...">
+                    </div>
+                    {{/if}}
+                    {{#if produto.imagem2}}
+                    <div class="carousel-item">
+                        <img src="{{produto.imagem2}}" class="d-block w-100" alt="...">
+                    </div>
+                    {{/if}}
+                    {{#if produto.imagem3}}
+                    <div class="carousel-item">
+                        <img src="{{produto.imagem3}}" class="d-block w-100" alt="...">
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+
+            <a href="usuario?id={{produto.UsuarioId}}">
+                <div class="container-fluid row m-0 w-100 d-none d-lg-block p-0">
+                    <div class="row float-start tela g-0 col-sd-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="col-3">
+                            {{#if usuario.imgPerfil}}
+                            <img class="img-fluid rounded-circle col-10 perfil-img-large" src="Images/{{ usuario.imgPerfil }}">
+                            {{else}}
+                            <img class="img-fluid rounded-circle col-10 perfil-img-large" src="/img/perfilsimg.png">
+                            {{/if}}
+                        </div>
+
+                        <div class="col-sd-12 col-lg-9 d-flex flex-column justify-content-center align-items-center">
+                            <p class="">{{usuario.Nome}}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-sd-12 col-md-12 col-lg-4 col-xl-4 d-flex flex-column align-items-center container-fluid p-0">
+            <div class="container-sd p-0">
+                <p class="fs-3">{{produto.nomeProd}}</p>
+                <p></p>
+                <div class="d-flex troxo fs-2 justify-content-center mb-3 mt-3">
+                    <p class="me-5">{{formatarReais produto.preco}}</p>
+                    <p><i class="bi bi-credit-card-fill"></i> Em até 12x {{formatarReais (math produto.preco "/" 12)}}</p>
+                </div>
+
+
+
+                <form method="GET" action="/propostas/enviar">
+                    <button type="submit"
+                        class="btn btn-lg fs-4 w-100 mb-5 text-center d-flex justify-content-center justify-content-between align-items-center">
+                        <i class="fs-2 bi bi-file-text float-start"></i><span>Enviar proposta</span><span></span>
+                    </button>
+
+                    <input type="hidden" value="{{usuario.id}}" name="vendedor">
+                    <input type="hidden" value="{{produto.id}}" name="produto">
+                    <input type="hidden" id="qtde" name="qtde" value="1">
+
+                </form>
+                
+                <form method="POST" action="/carrinho/adicionarCarrinho">
+                    <input type="hidden" value="{{usuario.id}}" name="vendedor">
+                    <input type="hidden" value="{{produto.id}}" name="produto">
+                    <input type="hidden" value="{{produto.preco}}" name="produtopreco">
+                    <input type="hidden" id="qtde2" name="qtde2" value="1">
+
+                    <button class="btn btn-lg fs-4 w-100 mb-5 text-center d-flex justify-content-center justify-content-between align-items-center">
+                        <i class="fs-2 bi bi-cart-plus-fill float-start"></i><span>Adicionar ao carrinho</span><span></span>
+                    </button>
+                </form>
+
+
+                <div class="d-flex text-center container qtde justify-content-center mt-5 mb-5">
+                    <button class="btn border border-black" onclick="decrementQuantity()"><i
+                            class="bi bi-dash"></i></button>
+                    <input type="text" class="form-control border-top border-start-0 border-end-0 border-black"
+                        id="quantity" value="1">
+                    <button class="btn border border-black" onclick="incrementQuantity()"><i
+                            class="bi bi-plus"></i></button>
+                </div>
+                <p class="text-center">Quantidade em estoque: {{produto.qtde}}</p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <a href="usuario?id={{usuario.id}}">
+        <div class="container-fluid m-0 w-100 d-lg-none d-sd-block">
+            <div class="row tela g-0 col-sd-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="col-sm-4 col-md-3 col-lg-3">
+                            {{#if usuario.imgPerfil}}
+                            <img class="img-fluid rounded-circle col-10 perfil-img-large" src="Images/{{ usuario.imgPerfil }}">
+                            {{else}}
+                            <img class="img-fluid rounded-circle col-10 perfil-img-large" src="/img/perfilsimg.png">
+                            {{/if}}
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-9 d-flex flex-column justify-content-center align-items-center">
+                    <p class="fs-5">{{usuario.nome}}</p>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <div class="d-flex flex-column container-md w-100 p-0 mt-5">
+        <div class=" mb-5 pb-5">
+            <h2 class="text-center fs-3">Detalhes do produto</h2>
+            <p class="fs-5">{{produto.descricao}}</p>
+        </div>
+    </div>
+</main>
+
+<style>
+    .perfil-img-large {
+        width: 100%;
+        max-width: 200px;
+        /* Ajuste o tamanho máximo desejado */
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
+<script>
+    var currentQuantity = 1; // Variável para armazenar o valor atual da quantidade
+
+
+    function incrementQuantity() {
+        var quantityInput = document.getElementById("quantity");
+        var inputValue = quantityInput.value;
+        var parsedValue = parseInt(inputValue);
+        var estoque = parseInt("{{produto.qtde}}"); // Obter a quantidade em estoque
+        if (isNaN(parsedValue)) {
+            parsedValue = 0;
+        }
+        if (parsedValue < estoque) {
+            currentQuantity = parsedValue + 1;
+            quantityInput.value = currentQuantity;
+        }
+
+        document.getElementById("qtde").value = currentQuantity
+        document.getElementById("qtde2").value = currentQuantity
+    }
+
+    function decrementQuantity() {
+        var quantityInput = document.getElementById("quantity");
+        var inputValue = quantityInput.value;
+        var parsedValue = parseInt(inputValue);
+        if (isNaN(parsedValue)) {
+            parsedValue = 0;
+        }
+        if (parsedValue > 1) {
+            currentQuantity = parsedValue - 1;
+            quantityInput.value = currentQuantity;
+        }
+        document.getElementById("qtde").value = currentQuantity
+        document.getElementById("qtde2").value = currentQuantity
+    }
+
+</script>
